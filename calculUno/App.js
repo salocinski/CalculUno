@@ -1,10 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text style={styles.titre}>CALCUNO</Text>
+      <Text>Votre calculateur de point</Text>
+      <Button
+         title="Commencer une partie"
+         onPress={() => Alert.alert('On doit ouvrir la View "CreerPartie"')}
+       />
     </View>
   );
 }
@@ -15,5 +20,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  titre:
+  {
+    fontSize:25,
+    fontWeight:"bold",
   },
 });
