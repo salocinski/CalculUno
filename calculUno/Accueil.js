@@ -1,24 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Alert } from 'react-native';
-import Navigation from "Navigation/Navigation"
+import Navigator from './Navigation/Navigation'
 
-export default function Accueil() {
-  return 
-  (
-    <Navigation/>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  titre:
+export default class Accueil extends React.Component 
+{
+  render()
   {
-    fontSize:25,
-    fontWeight:"bold",
-  },
-});
+    return(<Navigator/>)
+  }
+}

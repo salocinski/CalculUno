@@ -1,26 +1,28 @@
-import React from 'react'
-import { StyleSheet, View, TextInput, Button, Alert} from 'react-native'
+import React, {useState} from 'react'
+import { StyleSheet, View, TextInput, Text, Button, Alert} from 'react-native'
 
-class CreerPartie extends React.Component
+export default function CreerPartie ()
 {
-  render()
-  {
-    return
-    (
-      <View style={styles.container}>
-        <Text>Lancement d'une partie</Text>
-        <Button title="Ajouter un joueur"
-                onPress={() => Alert.alert("On va ouvrir une popup pour ajouter un joueur.")}/>
-      </View>
-    )
-  }
+  /*Initialisation de la partie courante*/
+  const partieCourante = new Partie ();
+
+  return (<View style={styles.container}>
+      <Text>Lancement d'une partie</Text>
+      <Button title="Ajouter un joueur"
+              onPress={() => Alert.alert("On va ouvrir une popup pour ajouter un joueur.")}/>
+    </View>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const styles = StyleSheet.create
+(
+  {
+    container: 
+    {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  }
+);

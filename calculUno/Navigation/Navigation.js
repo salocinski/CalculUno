@@ -1,37 +1,31 @@
-import { createStackNavigator } from 'react-navigation'
+import { createStackNavigator } from "react-navigation-stack";
+import { createAppContainer } from "react-navigation";
 
-import Accueil from "../Accueil"
-import CreerPartie from "../Components/CreerPartie"
-import AfficherPartie from "../Components/AffichePartie"
+//import Accueil from '../Accueil'
+import CreerPartie from '../Components/CreerPartie'
+import AfficherPartie from '../Components/AfficherPartie'
+import Accueil from '../Components/AfficherAccueil'
 
-export default createAppContainer(PartieStackNavigator)
-
-const PartieStackNavigator = createStackNavigator
-(
+/*
+    Définition des écrans vers lesquels la navigation est possible
+    Le premier élément est l'écran affiché par défaut.
+*/
+const ecrans = 
+{
+    Accueil :
     {
-        creationPartie : 
-        {
-            screen : CreerPartie,
-            navigationOptions:
-            {
-                title: "Créer partie"
-            }
-        },
-        Accueil :
-        {
-            screen: Accueil,
-            navigationOptions:
-            {
-                title: "Accueil"
-            }
-        },
-        AfficherPartie :
-        {
-            screen: AfficherPartie,
-            navigationOptions:
-            {
-                title: "Afficher partie"
-            }
-        }
+        screen: Accueil
+    },
+    CreerPartie : 
+    {
+        screen : CreerPartie
+    },
+    AfficherPartie :
+    {
+        screen: AfficherPartie
     }
-)
+}
+
+const PartieStackNavigator = createStackNavigator(ecrans);
+
+export default createAppContainer(PartieStackNavigator);
