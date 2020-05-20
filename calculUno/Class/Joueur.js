@@ -1,11 +1,10 @@
 export class Joueur 
 {
-    nomJoueur;
-    score;
+    nomJoueur = null;
+    score = 0;
 
-    constructor(nomJoueur, score) 
+    ajouterNom(nom)
     {
-      this.nomJoueur = nomJoueur;
-      this.score = score;
+      this.nomJoueur = nom;
     }
 }

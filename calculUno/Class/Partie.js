@@ -1,14 +1,9 @@
-import Joueur from './Partie'
-
 export class Partie 
 {
-  listeJoueur = [];
+  /*Initialisation de la liste des joueurs*/
+  listeJoueur = null;
 
-  constructor() 
-  {
-    this.listeJoueur = listeJoueur;
-  }
-
+  /*Fonction d'ajout d'un joueur dans la liste de la partie */
   ajouterJoueur(joueur)
   {
     this.listeJoueur.push(joueur)
