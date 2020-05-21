@@ -9,4 +9,8 @@ export class Partie
     this.listeJoueur.push(joueur)
   }
   
+  afficherListeJoueur()
+  {
+    console.log(this.listeJoueur.toString())
+  }
 }

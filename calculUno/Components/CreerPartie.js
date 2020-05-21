@@ -4,18 +4,17 @@ import {Joueur} from '../Class/Joueur'
 
 import {StyleSheet, View, TextInput, Text, Button, Alert} from 'react-native'
 
-export default function CreerPartie ()
+export default function CreerPartie ({navigation})
 {
   /*Initialisation de la partie courante*/
-  const partieCourante = new Partie ();
+  let partieCourante = new Partie ();
 
   return (<View style={styles.container}>
-      <Text>Lancement d'une partie</Text>
-      <View style={styles.groupeBouton}>
-        <Button title="Ajouter un joueur"
-                onPress={() => Alert.alert("On va ouvrir une popup pour ajouter un joueur.")}/>
-        <Button title="Lancer la partie"
-                onPress={() => Alert.alert("On va lancer la partie.")}/>
+      <Text>Ajouter un joueur pour lancer la partie</Text>
+      <View style={styles.bouton}>
+        <Button
+                title="Ajouter un joueur"
+                onPress={() => navigation.navigate('AjouterJoueur', partieCourante)}/>
       </View>
       
     </View>
@@ -32,10 +31,9 @@ const styles = StyleSheet.create
       alignItems: 'center',
       justifyContent: 'center',
     },
-    groupeBouton:
+    bouton:
     {
-      flexDirection: "row",
-      justifyContent: "space-between",
+      marginTop: 50
     }
   }
 );

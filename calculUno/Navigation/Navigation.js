@@ -5,6 +5,7 @@ import { createAppContainer } from "react-navigation";
 import CreerPartie from '../Components/CreerPartie'
 import AfficherPartie from '../Components/AfficherPartie'
 import Accueil from '../Components/AfficherAccueil'
+import AjouterJoueur from '../Components/AjouterJoueur'
 
 /*
     Définition des écrans vers lesquels la navigation est possible
@@ -23,6 +24,10 @@ const ecrans =
     AfficherPartie :
     {
         screen: AfficherPartie
+    },
+    AjouterJoueur:
+    {
+        screen: AjouterJoueur
     }
 }
 

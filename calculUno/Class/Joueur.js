@@ -7,4 +7,9 @@ export class Joueur
     {
       this.nomJoueur = nom;
     }
+
+    afficherJoueur ()
+    {
+      console.log("Le joueur '" + this.nomJoueur + "' va être ajouté à la partie avec un score de " + this.score);
+    }
 }
