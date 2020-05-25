@@ -1,16 +1,37 @@
+import React from 'react';
+import {Text, FlatList} from 'react-native';
+
 export class Partie 
 {
-  /*Initialisation de la liste des joueurs*/
-  listeJoueur = null;
+  listeJoueur = [];
 
-  /*Fonction d'ajout d'un joueur dans la liste de la partie */
   ajouterJoueur(joueur)
   {
     this.listeJoueur.push(joueur)
   }
   
+  loggerListeJoueur()
+  {
+    this.listeJoueur.forEach
+    (
+      function(element, index)
+      {
+        let position = index +1;
+
+        console.log("Affiche valeur element : " + element.nomJoueur + "-"+ element.score);
+        console.log("Le joueur " + element.nomJoueur + " a été ajouté dans la partie en position n° " + position + " avec un score de " + element.score); 
+      }
+    )
+  }
+
   afficherListeJoueur()
   {
-    console.log(this.listeJoueur.toString())
+    this.listeJoueur.forEach
+    (
+      function(element, index)
+      {
+        <FlatList data={[{key: element.nomJoueur}]} renderItem={({item}) => <Text>{item.key}</Text>}></FlatList>
+      }
+    )
   }
 }
