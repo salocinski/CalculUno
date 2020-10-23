@@ -8,8 +8,11 @@ export default function CreerPartie ({navigation})
 {
   /*Initialisation de la partie courante*/
   let partieCourante = new Partie ();
+  let saisie = '';
+
   /*On ajoute la variable partieCourante aux données transmises lors de la navigation dans l'application*/
   DataNavigation.setData('partie', partieCourante);
+  DataNavigation.setData('saisieNom', saisie);
 
   return (<View style={styles.container}>
       <Text>Ajouter un joueur pour lancer la partie</Text>

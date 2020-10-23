@@ -1,15 +1,42 @@
-import React from 'react'
-import { StyleSheet, View, TextInput, Button, Alert, FlatList} from 'react-native'
+import React, {useState} from 'react'
+import { StyleSheet, View, Text, Button, FlatList} from 'react-native'
+import {Partie} from '../Class/Partie';
+import { DataNavigation } from 'react-data-navigation';
 
-export default class AfficherPartie extends React.Component
+export default function afficherPartie ({navigation})
 {
-  render()
-  {
-    return(<View style={styles.main_container}>
-        <TextInput style={styles.textinput}>Score de la partie</TextInput>
-        /*Affichage de la liste des scores*/
-        /*Format : Place / Prénom / Score */
+  const partieCourante = DataNavigation.getData('partie');
+
+  return(
+    <View style={styles.container}>
+        <Text style={styles.titre}>Score de la partie</Text>
+        {partieCourante.afficherListeJoueur()}
+        <Button title="Ajouter les points"/>
         <FlatList/>
     </View>)
-  }
 }
+
+const styles = StyleSheet.create
+(
+  {
+    container: 
+    {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    titre:
+    {
+        fontSize:25,
+        fontWeight:"bold",
+        marginBottom: 50,
+        textDecorationLine: "underline"
+    },
+    groupeBouton:
+    {
+        flexDirection: "row",
+        justifyContent: "space-between",
+    }
+  }
+);

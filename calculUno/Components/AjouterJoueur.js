@@ -1,27 +1,33 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Text, Button, Alert} from 'react-native';
+import { StyleSheet, View, TextInput, Text, Button, List, ListItem, Alert} from 'react-native';
 
 import {Joueur} from '../Class/Joueur';
-import { FlatList } from 'react-native-gesture-handler';
 import { DataNavigation } from 'react-data-navigation';
 
-export default function AjouterJoueur ({navigation})
+export default function ajouterJoueur ({navigation})
 {
-    let saisie = '';
-    /*Récupération de la donnée partieCourante transmise au travers de la navigation de l'application*/
+    /*Récupération de la donnée partieCourante*/
     const partieCourante = DataNavigation.getData('partie');
+    let saisie = '';
+    this.state =
+    {
+      valeurTextInput : '',
+      liste: (partieCourante.listeJoueur === undefined || partieCourante.listeJoueur == null) ? [] : partieCourante.listeJoueur.map((nom) => nom)
+    }
+
+    verifierElement(this.textInput, this.state);
 
     return(
     <View style={styles.container}>
       <Text style={styles.titre}>Liste des joueurs ajoutés</Text>
-    <View>
-      {partieCourante.afficherListeJoueur()}
-    </View>
+      <View style={styles.listeJoueur}>
+        {afficherListeJoueur()}
+      </View>
       <View styles={styles.groupeBouton}>
-        <TextInput style={styles.input}
-                    autoCorrect={false}
-                    placeholder="Saisir le nom du joueur"
-                    onChangeText={(text) => saisie = text}
+        <TextInput style = {styles.input}
+                    placeholder = "Saisir le nom du joueur"
+                    ref={input => { this.textInput = input }}
+                    onChangeText = {(text) => saisie = text}
                     ></TextInput>
         <Button
             title="Valider"
@@ -30,30 +36,29 @@ export default function AjouterJoueur ({navigation})
       <View style= {styles.lancementPartie}>
         <Button 
             title="Lancer la partie"
-            onPress={() => Alert.alert("On va lancer la partie.")}/>
+            onPress={() => navigation.navigate('AfficherPartie', {partieCourante})}/>
       </View>
-      </View>
+    </View>
     )
 }
 
 function ajouterJoueurListe(navigation, saisie, partieCourante)
 {
     let longueurNomSaisie = saisie.length;
-    console.log("Longueur du nom saisie : " + longueurNomSaisie);
+    console.log("Longueur du nom : " + saisie + " = " + longueurNomSaisie);
 
     if(longueurNomSaisie >= 1 && longueurNomSaisie < 10)
     {
-      console.log(saisie);
-
+      //On crée le nouveau joueur et on initialise son score pour afficher ensuite ses informations.
       let joueurCourant = new Joueur();
       joueurCourant.ajouterNom(saisie);
-  
       joueurCourant.loggerInfoJoueur();
   
+      //On ajoute le joueur à la partie et on affiche les informations
       partieCourante.ajouterJoueur(joueurCourant);
       partieCourante.loggerListeJoueur();
-  
-      navigation.navigate('AjouterJoueur', {partieCourante})
+
+      ajouterJoueur(navigation);
     }
     else
     {
@@ -63,6 +68,48 @@ function ajouterJoueurListe(navigation, saisie, partieCourante)
         
 }
 
+function verifierElement(textInput, state)
+{
+  if(typeof textInput ===  'undefined' || textInput == null)
+    {
+      console.log("Le TextInput est undefined ou null.");
+    }
+    else
+    {
+      console.log("La valeur du TextInput n'est pas undefined.");
+      textInput.clear();
+    }
+
+    if(typeof state.liste === undefined || state.liste == null)
+    {
+      console.log("La liste des joueurs est vide.")
+    }
+    else
+    {
+      console.log("AFfichage de la liste des joueurs dans l'écran de saisie du nom : "+ state.liste.map((nom) => nom));
+    }
+}
+
+function afficherListeJoueur()
+{
+  if(this.state.liste === undefined || this.state.liste == null)
+  {
+    <Text>La liste des joueurs est vide</Text>
+  }
+  else
+  {
+    <List>
+      {
+        this.state.liste.map((joueur) => (
+          <ListItem
+            key={joueur.nomJoueur}
+            title={joueur.nomJoueur}
+          />
+        ))
+      }
+    </List>
+  }
+}
 const styles = StyleSheet.create
 (
   {

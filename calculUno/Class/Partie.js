@@ -23,15 +23,4 @@ export class Partie
       }
     )
   }
-
-  afficherListeJoueur()
-  {
-    this.listeJoueur.forEach
-    (
-      function(element, index)
-      {
-        <FlatList data={[{key: element.nomJoueur}]} renderItem={({item}) => <Text>{item.key}</Text>}></FlatList>
-      }
-    )
-  }
 }
